@@ -1,0 +1,7 @@
+
+struct event{
+public: 
+    
+private:
+
+};

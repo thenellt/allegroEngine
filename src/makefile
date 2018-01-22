@@ -3,18 +3,22 @@ CXXFLAGS= -Wall
 LDFLAGS	= -g
 LDLIBS	=
 
-FILES	= main
+SRC_DIR   = ./
 BUILD_DIR = ../build
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
+
+# FILES	= main engine renderManager eventManager
 
 .PHONY: default clean setupDir
-default: prog
+default: setupDir prog
 
-prog: setupDir $(FILES).o
-	cd $(BUILD_DIR) && $(CXX) $(LDFLAGS) $(FILES).o -o prog $(LDLIBS)
+prog: $(OBJ_FILES)
+	cd $(BUILD_DIR) && g++ $(LDFLAGS) -o $@ $^
 	mv $(BUILD_DIR)/prog ../prog
 
-$(FILES).o: $(FILES).cpp
-	$(CXX) $(CXXFLAGS) -c $(FILES).cpp && mv $(FILES).o $(BUILD_DIR)/$(FILES).o
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	g++ $(CXXFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 setupDir:
 	if [ ! -d $(BUILD_DIR) ]; then mkdir ../build; fi
