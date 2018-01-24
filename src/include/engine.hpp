@@ -3,19 +3,22 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "renderManager.hpp"
 #include "eventManager.hpp"
+
+using std::vector;
 
 extern eventManager *evntMngr;
 extern renderManager *renderer;
 
 class engine{
 public:
-    engine();
-    void runGame();
-    void loadLevel(std::string);
-private:
+        engine();
+        void runGame();
 
+private:
+        //vector<state *> states;
 };
 
 #endif

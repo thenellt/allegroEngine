@@ -1,5 +1,5 @@
 CXX	= g++
-CXXFLAGS= -Wall
+CXXFLAGS= -Wall -std=c++17
 LDFLAGS	= -g
 LDLIBS	=
 
@@ -7,8 +7,6 @@ SRC_DIR   = ./
 BUILD_DIR = ../build
 SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
-
-# FILES	= main engine renderManager eventManager
 
 .PHONY: default clean setupDir
 default: setupDir prog
@@ -21,8 +19,13 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	g++ $(CXXFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 setupDir:
-	if [ ! -d $(BUILD_DIR) ]; then mkdir ../build; fi
+	if [ ! -d $(BUILD_DIR) ]; then \
+		mkdir ../build; \
+	fi
 
 clean:
-	cd ../build && rm -rf *.o
-	rmdir ../build
+	if [ -d $(BUILD_DIR) ]; then \
+		cd $(BUILD_DIR) && rm -rf *.o \
+		rmdir $(BUILD_DIR); \
+	fi
+	cd ./include && rm -rf *.gch

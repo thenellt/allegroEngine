@@ -11,5 +11,11 @@ public:
 
 private:
     ALLEGRO_DISPLAY *display;
+    ALLEGRO_BITMAP *icon;
+    ALLEGRO_FONT *font;
+
+    int fps;
+    int fps_accum;
+    double fps_time;
 
 };
