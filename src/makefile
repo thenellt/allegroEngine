@@ -1,7 +1,7 @@
 CXX	= g++
 CXXFLAGS= -Wall -std=c++17
-LDFLAGS	= -g
-LDLIBS	=
+LDFLAGS	= -g -pthread
+LDLIBS	= -lrt `pkg-config --libs allegro-5.0 allegro_image-5.0 allegro_primitives-5.0 allegro_font-5.0`
 
 SRC_DIR   = ./
 BUILD_DIR = ../build
@@ -12,7 +12,7 @@ OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRC_FILES))
 default: setupDir prog
 
 prog: $(OBJ_FILES)
-	cd $(BUILD_DIR) && g++ $(LDFLAGS) -o $@ $^
+	cd $(BUILD_DIR) && g++ $(LDFLAGS) -o $@ $^ $(LDLIBS)
 	mv $(BUILD_DIR)/prog ../prog
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp

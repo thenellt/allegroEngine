@@ -1,7 +1,7 @@
-#pragma once
+#ifndef CALLBACK_HPP
+#define CALLBACK_HPP
 
 #include <string>
-#include "object.hpp"
 
 struct callbackData{
         callbackData(int k, int mb, int mx, int my) : key(k), mouseButton(mb),
@@ -12,3 +12,5 @@ struct callbackData{
         int mouseX;
         int mouseY;
 };
+
+#endif

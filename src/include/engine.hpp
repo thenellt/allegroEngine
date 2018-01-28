@@ -1,12 +1,16 @@
 #ifndef ENGINE_HPP
 #define ENGINE_HPP
-#pragma once
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include "renderManager.hpp"
 #include "eventManager.hpp"
+#include "state.hpp"
+#include "menu.hpp"
 
+using std::cout;
+using std::endl;
 using std::vector;
 
 extern eventManager *evntMngr;
@@ -18,7 +22,8 @@ public:
         void runGame();
 
 private:
-        //vector<state *> states;
+        state *newState;
+        vector<state *> states;
 };
 
 #endif

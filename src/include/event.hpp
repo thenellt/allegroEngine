@@ -1,3 +1,5 @@
+#ifndef EVENT_HPP
+#define EVENT_HPP
 
 struct event{
 public: 
@@ -5,3 +7,5 @@ public:
 private:
 
 };
+
+#endif

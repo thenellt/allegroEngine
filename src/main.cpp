@@ -14,7 +14,7 @@ int main(int argc, char**argv){
         cout << "levelPath: " << levelPath << endl;
 
         engine *gameEngine = new engine();
-        gameEngine->loadLevel(levelPath);
+        gameEngine->runGame();
 
         return 0;
 }
