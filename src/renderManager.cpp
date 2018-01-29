@@ -1,4 +1,5 @@
 #include "include/renderManager.hpp"
+#include "include/eventManager.hpp"
 
 renderManager::renderManager(){
         frameTimer = al_create_timer(1.0 / 60);
@@ -21,4 +22,8 @@ void renderManager::stopFpsRegulator(){
 
 void renderManager::confirmResize(){
         al_acknowledge_resize(display);
+}
+
+bool renderManager::checkTimer(const ALLEGRO_TIMER *eventSource){
+        return eventSource == frameTimer;
 }

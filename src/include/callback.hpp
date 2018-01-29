@@ -2,15 +2,17 @@
 #define CALLBACK_HPP
 
 #include <string>
+#include "callbackData.hpp"
 
-struct callbackData{
-        callbackData(int k, int mb, int mx, int my) : key(k), mouseButton(mb),
-                mouseX(mx), mouseY(my) {};
+class object;
+typedef void (object::*objMemFnc)(callbackData data);
 
-        int key;
-        int mouseButton;
-        int mouseX;
-        int mouseY;
+struct callback{
+        callback() {};
+        callback(object *o, objMemFnc f) : owner(o), func(f) {};
+
+        object *owner;
+        objMemFnc func;
 };
 
 #endif

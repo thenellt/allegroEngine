@@ -8,36 +8,38 @@ using std::vector;
 
 class trigger{
 public:
+        enum mTrigType {any, click, clickRegion, region};
+        enum kTrigType {kany, single, many};
         void setID(int);
         bool checkID(int);
-protected:
-        int id;
         int type;
+protected:
+        trigger(bool down) : isDown(down) {};
+        int id;
+        bool isDown;
 };
 
 class mouseTrigger : public trigger{
 public:
-        mouseTrigger();                 //any mouse activity
-        mouseTrigger(int);              //specific mouse button
-        mouseTrigger(int, rect);        //button in region
-        mouseTrigger(rect);             //any activity in region
+        mouseTrigger(bool = false);                   //any mouse activity
+        mouseTrigger(int, bool = false);              //specific mouse button
+        mouseTrigger(int, rect, bool = false);        //button in region
+        mouseTrigger(rect, bool = false);             //any activity in region
 
-        bool check(int, int, int);      //button, x, y
+        bool check(int, int, int, bool);      //button, x, y
 private:
-        enum mTrigType {any, click, clickRegion, region};
         rect bounds;
         int button;
 };
 
 class keyTrigger : public trigger{
 public:
-        keyTrigger();
-        keyTrigger(int);
-        keyTrigger(vector<int>);
+        keyTrigger(bool = false);
+        keyTrigger(int, bool = false);
+        keyTrigger(vector<int>, bool = false);
 
-        bool check(int);
+        bool check(int, bool);
 private:
-        enum kTrigType {any, single, many};
         int key;
         vector<int> keys;
 };

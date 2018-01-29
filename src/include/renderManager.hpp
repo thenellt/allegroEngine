@@ -20,10 +20,10 @@ public:
     void startFpsRegulator();
     void stopFpsRegulator();
     void confirmResize();
-    bool checkTimer(const ALLEGRO_EVENT_SOURCE *);
+    bool checkTimer(const ALLEGRO_TIMER *);
 private:
     ALLEGRO_DISPLAY *display;
-    ALLEGRO_BITMAP *icon;
+    //ALLEGRO_BITMAP *icon;
     ALLEGRO_FONT *font;
     ALLEGRO_TIMER *frameTimer;
 

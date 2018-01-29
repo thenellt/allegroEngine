@@ -1,7 +1,7 @@
 CXX	= g++
 CXXFLAGS= -Wall -std=c++17
 LDFLAGS	= -g -pthread
-LDLIBS	= -lrt `pkg-config --libs allegro-5.0 allegro_image-5.0 allegro_primitives-5.0 allegro_font-5.0`
+LDLIBS	= -lrt -I/usr/include/allegro5 -L/usr/lib -lallegro -lallegro_image -lallegro_primitives -lallegro_font#`pkg-config --libs allegro-5.0 allegro_image-5.0 allegro_primitives-5.0 allegro_font-5.0`
 
 SRC_DIR   = ./
 BUILD_DIR = ../build

@@ -14,7 +14,8 @@ using std::vector;
 class menu : public state{
 public:
         menu();
-        menu(string);
+        void switchedTo();
+        void switchedFrom();
         void draw();
 private:
         //vector<object *> components;

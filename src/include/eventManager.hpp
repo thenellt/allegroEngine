@@ -16,8 +16,9 @@
 #include "event.hpp"
 #include "renderManager.hpp"
 #include "triggers.hpp"
-#include "callback.hpp"
 #include "object.hpp"
+#include "callbackData.hpp"
+#include "callback.hpp"
 
 using std::endl;
 using std::cerr;
@@ -34,22 +35,23 @@ class eventManager{
 public:
         eventManager();
         ALLEGRO_EVENT_QUEUE *accessEventQueue();
-        int registerEvent(string, mouseTrigger &, objMemFnc);
-        int registerEvent(string, keyTrigger &, objMemFnc);
-        void removeCallback(const string);
+        int registerEvent(object *, mouseTrigger, objMemFnc);
+        int registerEvent(object *, keyTrigger, objMemFnc);
         void removeCallback(const int);
-        void checkKeyboardTriggers(const int);
-        void checkMouseTriggers();
+        void checkMouseMoveTriggers(int, int);
+        void checkMouseButtonTriggers(int, int, bool);
+        void checkKeyboardTriggers(int, bool);
         int poll();
 
 private:
-        //stack<mouseTrigger> mouseListeners;
-        //stack<keyTrigger> keyboardListners;
+        stack<mouseTrigger> mousePosListners;
+        stack<mouseTrigger> mouseButtonListeners;
+        stack<keyTrigger> keyboardListners;
 
-        queue<string> callbackQueue;
-        unordered_map<string, objMemFnc> callbackLookup;
+        unordered_map<int, callback> callbackLookup;
 
         ALLEGRO_EVENT_QUEUE *evntQueue;
+        int idCounter;
 };
 
 #endif
