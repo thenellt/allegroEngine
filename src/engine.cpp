@@ -28,7 +28,7 @@ void engine::runGame(){
                 case nothing:
                         break;
                 case draw:
-                        states.back()->draw();
+                        drawStates();
                         break;
                 case pop:
                         states.pop_back();
@@ -44,4 +44,24 @@ void engine::runGame(){
                         break;
                 }
         }
+}
+
+void engine::drawStates(){
+        unsigned int start = states.size();
+        vector<state *>::reverse_iterator rit = states.rbegin();
+        for(; rit != states.rend(); ++rit){
+                start--;
+                if((*rit)->isBlocking() || !start)
+                        break;
+        }
+
+        for(; start < states.size(); start++)
+                states.at(start)->draw();
+
+        engineDebugDraw();
+        renderer->finishFrame();
+}
+
+void engine::engineDebugDraw(){ //for drawing debug overlays over everything else
+        renderer->drawFPSInfo();
 }

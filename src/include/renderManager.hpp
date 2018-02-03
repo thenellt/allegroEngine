@@ -19,8 +19,11 @@ public:
     renderManager();
     void startFpsRegulator();
     void stopFpsRegulator();
+    double finishFrame();
+    void drawFPSInfo();
     void confirmResize();
     bool checkTimer(const ALLEGRO_TIMER *);
+    double getFPS() const {return fps;};
 private:
     ALLEGRO_DISPLAY *display;
     //ALLEGRO_BITMAP *icon;
@@ -30,7 +33,7 @@ private:
     int fps;
     int fps_accum;
     double fps_time;
-
+    double lastFrameT;
 };
 
 #endif

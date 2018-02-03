@@ -20,7 +20,8 @@ class engine{
 public:
         engine();
         void runGame();
-
+        void drawStates();
+        void engineDebugDraw();
 private:
         state *newState;
         vector<state *> states;
